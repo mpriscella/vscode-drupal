@@ -1,6 +1,6 @@
 // See https://aka.ms/vscode-remote/devcontainer.json for format details.
 {
-  "name": "Drupal Development",
+  "name": "Drupal",
   "dockerComposeFile": "docker-compose.yml",
   "service": "php",
   "workspaceFolder": "/opt/drupal",
@@ -9,8 +9,6 @@
     "files.associations": {
       "*.inc": "php",
       "*.install": "php",
-      "Jenkinsfile": "groovy",
-      "*.Jenkinsfile": "groovy",
       "*.module": "php",
       "*.theme": "php"
     },
@@ -23,7 +21,6 @@
     "codezombiech.gitignore",
     "ikappas.phpcs",
     "whatwedo.twig",
-    "msjsdiag.debugger-for-chrome",
     "redhat.vscode-yaml"
   ]
 }
