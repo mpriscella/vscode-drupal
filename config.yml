@@ -1,0 +1,37 @@
+## Composer configuration.
+##
+composer:
+
+  ## List of composer packages to require when the image is being built.
+  ##
+  require:
+    - drupal/devel
+    - drush/drush
+
+## Module configuration.
+##
+modules:
+
+  ## List of modules to clone from https://git.drupalcode.org.
+  ##
+  clone: []
+    # - require_on_publish
+
+  ## List of modules to enable when running the install script.
+  ##
+  enable:
+    - devel
+
+## Theme configuration.
+##
+themes:
+
+  ## List of themes to clone from https://git.drupalcode.org.
+  ##
+  clone: []
+    # - olivero
+
+  ## List of themes to enable when running the install script.
+  ##
+  enable:
+    - claro
