@@ -7,9 +7,22 @@ drush site-install --site-name='Drupal Sandbox' --db-url=mysql://root:root@mysql
 drush -y config-set system.performance css.preprocess 0
 drush -y config-set system.performance js.preprocess 0
 
+git_protocol="$(yq read config.yml modules.git_protocol)"
+if [ "$git_protocol" = 'ssh' ]
+then
+  remote_url="git@git.drupal.org:project/"
+elif [ "$git_protocol" = 'https' ]
+then
+  remote_url="https://git.drupalcode.org/project/"
+fi
+
+# Clone projects.
+yq read config.yml modules.clone[*] | while read -r p; do cd web/modules/dev && git clone "$remote_url/$p.git"; done
+yq read config.yml themes.clone[*] | while read -r p; do cd web/themes/dev && git clone "$remote_url/$p.git"; done
+
 # Install extensions.
-yq read config.yml "modules.enable[*]" | while read p; do drush -y pm:enable "$p"; done
-yq read config.yml "themes.enable[*]" | while read p; do drush -y theme:enable "$p"; done
+yq read config.yml "modules.enable[*]" | while read -r p; do drush -y pm:enable "$p"; done
+yq read config.yml "themes.enable[*]" | while read -r p; do drush -y theme:enable "$p"; done
 
 # Rebuild cache.
 drush cr

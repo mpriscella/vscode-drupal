@@ -5,14 +5,21 @@ composer:
   ## List of composer packages to require when the image is being built.
   ##
   require:
+    - behat/mink-selenium2-driver:^1.4
     - drupal/devel
     - drush/drush
+    - phpunit/phpunit:^8.4.1
+    - symfony/phpunit-bridge:^4.4
 
 ## Module configuration.
 ##
 modules:
 
-  ## List of modules to clone from https://git.drupalcode.org.
+  ## Which git protocol to use when cloning modules.
+  ##
+  git_protocol: ssh
+
+  ## List of modules to clone.
   ##
   clone: []
     # - require_on_publish
