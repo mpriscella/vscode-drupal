@@ -9,7 +9,7 @@ ENV XDEBUG_MODE=debug
 ENV XDEBUG_CONFIG="client_host=localhost log=/var/www/html/production/xdebug.log"
 
 RUN apt-get update -y; \
-  apt-get install -y git default-mysql-client; \
+  apt-get install -y git default-mysql-client patchutils; \
   mkdir web/modules/dev; \
   mkdir web/themes/dev;
 

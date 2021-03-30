@@ -27,19 +27,8 @@ services:
     restart: always
 
   chrome:
-    image: drupalci/webdriver-chromedriver:production
-    ulimits:
-      core:
-        soft: -1
-        hard: -1
-    ports:
-      - "4444:4444"
-      - "9515:9515"
-    entrypoint:
-      - chromedriver
-      - "--log-path=/tmp/chromedriver.log"
-      - "--verbose"
-      - "--whitelisted-ips="
+    image: selenium/standalone-chrome:4.0.0-beta-3-prerelease-20210329
+    shm_size: 2g
 
 volumes:
   drupal_modules:
