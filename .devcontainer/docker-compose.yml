@@ -29,6 +29,8 @@ services:
   chrome:
     image: selenium/standalone-chrome:4.0.0-beta-3-prerelease-20210329
     shm_size: 2g
+    ports:
+      - 5901:5900
 
 volumes:
   drupal_modules:
