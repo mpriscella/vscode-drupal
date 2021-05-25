@@ -1,7 +1,12 @@
 #!/bin/sh
 
 # Install Drupal.
-drush site-install --site-name='Drupal Sandbox' --db-url=mysql://root:root@mysql:3306/drupal --account-name=admin --account-pass=admin
+if [ "$CODESPACES" = 'true' ]
+then
+  drush site-install --site-name='Drupal Sandbox' --db-url=mysql://root:root@mysql:3306/drupal --account-name=admin --account-pass=admin --sites-subdir=githubpreview.dev
+else
+  drush site-install --site-name='Drupal Sandbox' --db-url=mysql://root:root@mysql:3306/drupal --account-name=admin --account-pass=admin
+fi
 
 # Disable asset preprocessing.
 drush -y config-set system.performance css.preprocess 0
