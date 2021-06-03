@@ -1,12 +1,7 @@
 #!/bin/sh
 
 # Install Drupal.
-if [ "$CODESPACES" = 'true' ]
-then
-  drush site-install --site-name='Drupal Sandbox' --db-url=mysql://root:root@mysql:3306/drupal --account-name=admin --account-pass=admin --sites-subdir=githubpreview.dev
-else
-  drush site-install --site-name='Drupal Sandbox' --db-url=mysql://root:root@mysql:3306/drupal --account-name=admin --account-pass=admin
-fi
+drush site-install --site-name='Drupal Sandbox' --db-url=mysql://root:root@mysql:3306/drupal --account-name=admin --account-pass=admin
 
 # Disable asset preprocessing.
 drush -y config-set system.performance css.preprocess 0
@@ -28,6 +23,12 @@ yq read config.yml themes.clone[*] | while read -r p; do cd web/themes/dev && gi
 # Install extensions.
 yq read config.yml "modules.enable[*]" | while read -r p; do drush -y pm:enable "$p"; done
 yq read config.yml "themes.enable[*]" | while read -r p; do drush -y theme:enable "$p"; done
+
+if [ "$CODESPACES" = 'true' ]
+then
+  echo "\$settings['reverse_proxy'] = TRUE;" >> web/sites/default/settings.php
+  echo "\$settings['reverse_proxy_addresses'] = ['172.18.0.1', '172.18.0.3'];" >> web/sites/default/settings.php
+fi
 
 # Rebuild cache.
 drush cr
