@@ -27,7 +27,7 @@ yq read config.yml "themes.enable[*]" | while read -r p; do drush -y theme:enabl
 if [ "$CODESPACES" = 'true' ]
 then
   echo "\$settings['reverse_proxy'] = TRUE;" >> web/sites/default/settings.php
-  echo "\$settings['reverse_proxy_addresses'] = ['172.18.0.1', '172.18.0.3'];" >> web/sites/default/settings.php
+  echo "\$settings['reverse_proxy_addresses'] = [\$_SERVER['SERVER_ADDR'], \$_SERVER['REMOTE_ADDR']];" >> web/sites/default/settings.php
 fi
 
 # Rebuild cache.
