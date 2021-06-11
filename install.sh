@@ -7,6 +7,14 @@ drush site-install --site-name='Drupal Sandbox' --db-url=mysql://root:root@mysql
 drush -y config-set system.performance css.preprocess 0
 drush -y config-set system.performance js.preprocess 0
 
+if [ "$CODESPACES" = 'true' ]
+then
+  echo "\$settings['reverse_proxy'] = TRUE;" >> web/sites/default/settings.php
+  echo "\$settings['reverse_proxy_addresses'] = [\$_SERVER['SERVER_ADDR'], \$_SERVER['REMOTE_ADDR']];" >> web/sites/default/settings.php
+  printf "$DRUPAL_SSH_PRIVATE_KEY\n" > /root/.ssh/id_rsa
+  chmod 400 /root/.ssh/id_rsa
+fi
+
 git_protocol="$(yq read config.yml modules.git_protocol)"
 if [ "$git_protocol" = 'ssh' ]
 then
@@ -23,14 +31,6 @@ yq read config.yml themes.clone[*] | while read -r p; do cd web/themes/dev && gi
 # Install extensions.
 yq read config.yml "modules.enable[*]" | while read -r p; do drush -y pm:enable "$p"; done
 yq read config.yml "themes.enable[*]" | while read -r p; do drush -y theme:enable "$p"; done
-
-if [ "$CODESPACES" = 'true' ]
-then
-  echo "\$settings['reverse_proxy'] = TRUE;" >> web/sites/default/settings.php
-  echo "\$settings['reverse_proxy_addresses'] = [\$_SERVER['SERVER_ADDR'], \$_SERVER['REMOTE_ADDR']];" >> web/sites/default/settings.php
-  printf "$DRUPAL_SSH_PRIVATE_KEY\n" > /root/.ssh/id_rsa
-  chmod 400 /root/.ssh/id_rsa
-fi
 
 # Rebuild cache.
 drush cr
