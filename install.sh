@@ -28,6 +28,8 @@ if [ "$CODESPACES" = 'true' ]
 then
   echo "\$settings['reverse_proxy'] = TRUE;" >> web/sites/default/settings.php
   echo "\$settings['reverse_proxy_addresses'] = [\$_SERVER['SERVER_ADDR'], \$_SERVER['REMOTE_ADDR']];" >> web/sites/default/settings.php
+  printf "$DRUPAL_SSH_PRIVATE_KEY\n" > /root/.ssh/id_rsa
+  chmod 400 /root/.ssh/id_rsa
 fi
 
 # Rebuild cache.
