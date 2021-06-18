@@ -11,13 +11,12 @@ ENV XDEBUG_CONFIG="client_host=localhost log=/var/www/html/production/xdebug.log
 RUN apt-get update -y; \
   apt-get install -y git default-mysql-client patchutils; \
   mkdir web/modules/dev; \
-  mkdir web/themes/dev; \
-  chmod -R 777 web/sites/default/files;
+  mkdir web/themes/dev;
 
 COPY --from=mikefarah/yq:3 /usr/bin/yq /usr/local/bin/
 
 COPY config.yml .
 
-RUN composer require $(yq read config.yml composer.require[*] | tr '\r\n' ' ')
+RUN composer require $(yq read config.yml composer.require[*] | tr '\r\n' ' ') -W
 
 COPY . .
