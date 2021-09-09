@@ -49,6 +49,8 @@ COPY --from=mikefarah/yq:3 /usr/bin/yq /usr/local/bin/
 
 COPY config.yml .
 
+RUN sed -i 's/minimum-stability": "stable"/minimum-stability": "dev"/' composer.json
+
 RUN composer require $(yq read config.yml composer.require[*] | tr '\r\n' ' ') -W
 
 COPY . .
