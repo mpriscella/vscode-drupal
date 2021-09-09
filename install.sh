@@ -13,7 +13,7 @@ then
   echo "\$settings['reverse_proxy'] = TRUE;" >> web/sites/default/settings.php
   echo "\$settings['reverse_proxy_addresses'] = [\$_SERVER['SERVER_ADDR'], \$_SERVER['REMOTE_ADDR']];" >> web/sites/default/settings.php
   mkdir -p /root/.ssh
-  printf "$DRUPAL_SSH_PRIVATE_KEY\n" > /root/.ssh/id_rsa
+  echo -e "$DRUPAL_SSH_PRIVATE_KEY\n" > /root/.ssh/id_rsa
   chmod 400 /root/.ssh/id_rsa
 fi
 
