@@ -20,3 +20,8 @@ and therefore all development must happen within the container.
 * Open a new terminal in Visual Studio Code and run `./install.sh`.
 * Navigate to `http://localhost:8080` in your browser and log in to the Drupal
   instance with the username and password `admin`.
+
+
+## Codespaces
+
+`$DRUPAL_SSH_PRIVATE_KEY` env variable required.

@@ -5,8 +5,8 @@ composer:
   ## List of composer packages to require when the image is being built.
   ##
   require:
-    - drush/drush
     - drupal/core-dev
+    - drush/drush
     - phpspec/prophecy-phpunit
     - drupal/devel
 

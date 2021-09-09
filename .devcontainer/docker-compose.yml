@@ -5,6 +5,9 @@ services:
     image: mysql:8
     environment:
       MYSQL_ROOT_PASSWORD: root
+    entrypoint:
+      - docker-entrypoint.sh
+      - --default-authentication-plugin=mysql_native_password
     ports:
       - '3307:3306'
     restart: always
@@ -14,15 +17,12 @@ services:
       context: ../
       args:
         drupal_version: 9-apache
+    working_dir: /opt/drupal
     environment:
       COMPOSER_MEMORY_LIMIT: -1
     ports:
       - 8080:80
     volumes:
-      - drupal_modules:/var/www/html/modules
-      - drupal_profiles:/var/www/html/profiles
-      - drupal_sites:/var/www/html/sites
-      - drupal_themes:/var/www/html/themes
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
 
@@ -31,9 +31,3 @@ services:
     shm_size: 2g
     ports:
       - 5901:5900
-
-volumes:
-  drupal_modules:
-  drupal_profiles:
-  drupal_sites:
-  drupal_themes:
