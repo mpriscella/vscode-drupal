@@ -1,0 +1,19 @@
+composer:
+  require:
+    - drush/drush
+    - drupal/admin_toolbar
+    - drupal/core-dev
+    - drupal/gin
+    - phpspec/prophecy-phpunit
+    - drupal/devel
+modules:
+  git_protocol: ssh
+  clone: []
+  enable:
+    - admin_toolbar
+    - devel
+themes:
+  clone: []
+  enable:
+    - claro
+    - olivero
