@@ -10,7 +10,7 @@
             "request": "launch",
             "port": 9003,
             "pathMappings": {
-                "/opt/drupal/": "${workspaceRoot}"
+                "/var/www/html/": "${workspaceRoot}"
             }
         }
     ]

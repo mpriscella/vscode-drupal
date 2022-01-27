@@ -1,0 +1,39 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "drush site:install",
+      "type": "shell",
+      "command": "./vendor/bin/drush site-install --db-url=mysql://drupal:drupal@db:3306/drupal --account-pass=admin",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "/var/www/html"
+      },
+      "presentation": {
+        "focus": true,
+      },
+    },
+    {
+      "label": "Generate Core Patch",
+      "type": "shell",
+      "command": "/workspaces/vscode-drupal/.devcontainer/scripts/generate_patch.sh",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "/var/www/html/${input:project}"
+      },
+      "presentation": {
+        "focus": true,
+      },
+    }
+  ],
+  "inputs": [
+    {
+      "id": "project",
+      "description": "Drupal Project:",
+      "default": "require_on_publish",
+      "type": "promptString"
+    }
+  ]
+}

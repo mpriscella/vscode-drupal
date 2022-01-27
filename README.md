@@ -25,3 +25,14 @@ and therefore all development must happen within the container.
 ## Codespaces
 
 `$DRUPAL_SSH_PRIVATE_KEY` env variable required.
+
+
+## Developing Documentation
+
+https://www.drupal.org/docs/develop/git/using-git-to-contribute-to-drupal/creating-an-interdiff
+
+https://www.drupal.org/docs/develop/git/using-git-to-contribute-to-drupal/patch-and-merge-request-guidelines
+
+https://www.drupal.org/docs/develop/git/using-git-to-contribute-to-drupal/making-a-patch
+
+https://www.drupal.org/docs/system-requirements/php-requirements

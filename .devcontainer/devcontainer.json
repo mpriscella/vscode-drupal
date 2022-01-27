@@ -1,27 +1,45 @@
-// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/php-mariadb
+// Update the VARIANT arg in docker-compose.yml to pick a PHP version
 {
-  "name": "Drupal",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "php",
-  "workspaceFolder": "/opt/drupal",
-  "forwardPorts": [8080],
+	"name": "Drupal",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
 
-  "settings": {
-    "files.associations": {
-      "*.inc": "php",
-      "*.install": "php",
-      "*.module": "php",
-      "*.theme": "php"
-    },
-    "phpcs.standard": "/opt/drupal/vendor/drupal/coder/coder_sniffer/Drupal/"
-  },
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"sqltools.connections": [{
+			"name": "Drupal database",
+			"driver": "MariaDB",
+			"server": "localhost",
+			"previewLimit": 50,
+			"port": 3306,
+			"database": "drupal",
+			"username": "drupal",
+			"password": "drupal"
+		}]
+	},
 
-  "extensions": [
-    "felixfbecker.php-debug",
-    "bmewburn.vscode-intelephense-client",
-    "codezombiech.gitignore",
-    "ikappas.phpcs",
-    "whatwedo.twig",
-    "redhat.vscode-yaml"
-  ]
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"xdebug.php-debug",
+		"zobo.php-intellisense",
+		"mrmlnc.vscode-apache",
+		"mtxr.sqltools",
+		"mtxr.sqltools-driver-mysql"
+	],
+
+	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
+	"forwardPorts": [8080, 3306],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"
+
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+	"features": {
+		"git": "latest",
+		"github-cli": "latest"
+	}
 }
