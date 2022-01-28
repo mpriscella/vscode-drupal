@@ -1,12 +1,13 @@
 #!/bin/bash
 
+if [ ! -f drupal/composer.json ]; then
+  git submodule update --init
+fi
+
 sudo rm -rf /var/www/html
+sudo ln -s $CODESPACE_VSCODE_FOLDER/drupal /var/www/html
 
-sudo git clone https://git.drupalcode.org/project/drupal.git /var/www/html
-
-sudo chown -R vscode:root /var/www/html
-
-cat > /var/www/html/.gitignore <<- EOM
+cat > drupal/.gitignore <<- EOM
 vendor
 modules
 profiles
@@ -14,7 +15,7 @@ themes
 sites/default/files
 EOM
 
-cd /var/www/html
+cd $CODESPACE_VSCODE_FOLDER/drupal
 
 composer install
 

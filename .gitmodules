@@ -1,0 +1,3 @@
+[submodule "drupal"]
+	path = drupal
+	url = https://git.drupalcode.org/project/drupal.git
