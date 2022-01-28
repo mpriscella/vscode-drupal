@@ -36,3 +36,10 @@ https://www.drupal.org/docs/develop/git/using-git-to-contribute-to-drupal/patch-
 https://www.drupal.org/docs/develop/git/using-git-to-contribute-to-drupal/making-a-patch
 
 https://www.drupal.org/docs/system-requirements/php-requirements
+
+
+
+
+# TODO
+
+- [ ] For some reason, `apache2ctl start` works when starting a codespace after stopped, but results in a 502 gateway error if rebuilding
