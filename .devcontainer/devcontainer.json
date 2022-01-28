@@ -7,27 +7,18 @@
 	"service": "app",
 	"workspaceFolder": "/workspace",
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": {
-		"sqltools.connections": [{
-			"name": "Drupal database",
-			"driver": "MariaDB",
-			"server": "localhost",
-			"previewLimit": 50,
-			"port": 3306,
-			"database": "drupal",
-			"username": "drupal",
-			"password": "drupal"
-		}]
+	"remoteEnv": {
+		"PATH": "${containerEnv:PATH}:/var/www/html/vendor/bin",
 	},
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"xdebug.php-debug",
 		"zobo.php-intellisense",
-		"mrmlnc.vscode-apache",
-		"mtxr.sqltools",
-		"mtxr.sqltools-driver-mysql"
+		"ms-azuretools.vscode-docker"
 	],
 
 	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
@@ -35,13 +26,13 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"
-	"onCreateCommand": ".devcontainer/scripts/on_create.sh",
-	"postCreateCommand": "apache2ctl start",
+	// "onCreateCommand": ".devcontainer/scripts/on_create.sh",
+	// "postCreateCommand": "apache2ctl start",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
 	"features": {
-		"git": "latest",
-		"github-cli": "latest"
+		"github-cli": "latest",
+		"docker-from-docker": "latest"
 	}
 }
