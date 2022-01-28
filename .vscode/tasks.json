@@ -16,7 +16,7 @@
       },
     },
     {
-      "label": "drush site:install",
+      "label": "Install Drupal",
       "type": "shell",
       "command": "./vendor/bin/drush site-install --db-url=mysql://drupal:drupal@db:3306/drupal --account-pass=admin",
       "problemMatcher": [],
@@ -45,7 +45,7 @@
       "command": "git clone https://git.drupalcode.org/project/${input:project}.git",
       "problemMatcher": [],
       "options": {
-        "cwd": "/var/www/html/modules"
+        "cwd": "/var/www/html/${input:project_type}"
       },
       "presentation": {
         "focus": true,
@@ -61,9 +61,20 @@
     },
     {
       "id": "project",
-      "description": "Drupal Project:",
+      "description": "Drupal Project",
       "default": "require_on_publish",
       "type": "promptString"
+    },
+    {
+      "id": "project_type",
+      "description": "Project Type",
+      "type": "pickString",
+      "default": "modules",
+      "options": [
+        "modules",
+        "themes",
+        "profiles"
+      ]
     }
   ]
 }
