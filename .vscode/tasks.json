@@ -4,6 +4,18 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Run Drush Command",
+      "type": "shell",
+      "command": "./vendor/bin/drush ${input:command}",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "/var/www/html"
+      },
+      "presentation": {
+        "focus": true,
+      },
+    },
+    {
       "label": "drush site:install",
       "type": "shell",
       "command": "./vendor/bin/drush site-install --db-url=mysql://drupal:drupal@db:3306/drupal --account-pass=admin",
@@ -26,9 +38,27 @@
       "presentation": {
         "focus": true,
       },
+    },
+    {
+      "label": "Clone Project",
+      "type": "shell",
+      "command": "git clone https://git.drupalcode.org/project/${input:project}.git",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "/var/www/html/modules"
+      },
+      "presentation": {
+        "focus": true,
+      },
     }
   ],
   "inputs": [
+    {
+      "id": "command",
+      "description": "Drush Command",
+      "default": "status",
+      "type": "promptString"
+    },
     {
       "id": "project",
       "description": "Drupal Project:",

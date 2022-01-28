@@ -6,7 +6,13 @@ sudo git clone https://git.drupalcode.org/project/drupal.git /var/www/html
 
 sudo chown -R vscode:root /var/www/html
 
-echo "vendor\nmodules\nprofiles\nthemes" > /var/www/html/.gitignore
+cat > /var/www/html/.gitignore <<- EOM
+vendor
+modules
+profiles
+themes
+sites/default/files
+EOM
 
 cd /var/www/html
 
