@@ -18,7 +18,7 @@
 	"extensions": [
 		"xdebug.php-debug",
 		"zobo.php-intellisense",
-		"ms-azuretools.vscode-docker"
+		"ms-azuretools.vscode-docker",
 	],
 
 	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)

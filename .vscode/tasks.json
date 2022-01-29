@@ -42,7 +42,7 @@
     {
       "label": "Clone Project",
       "type": "shell",
-      "command": "git clone https://git.drupalcode.org/project/${input:project}.git",
+      "command": "git clone git@git.drupal.org:project/${input:project}.git",
       "problemMatcher": [],
       "options": {
         "cwd": "/var/www/html/${input:project_type}"

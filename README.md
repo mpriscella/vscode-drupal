@@ -43,3 +43,5 @@ https://www.drupal.org/docs/system-requirements/php-requirements
 # TODO
 
 - [ ] For some reason, `apache2ctl start` works when starting a codespace after stopped, but results in a 502 gateway error if rebuilding
+- [ ] Test debugging
+- [ ] How to run tests (all tests that run on d.o should be able to run here)
