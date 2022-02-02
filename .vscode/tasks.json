@@ -4,24 +4,12 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Run Drush Command",
+      "label": "Clone Project",
       "type": "shell",
-      "command": "./vendor/bin/drush ${input:command}",
+      "command": "git clone git@git.drupal.org:project/${input:project}.git",
       "problemMatcher": [],
       "options": {
-        "cwd": "/var/www/html"
-      },
-      "presentation": {
-        "focus": true,
-      },
-    },
-    {
-      "label": "Install Drupal",
-      "type": "shell",
-      "command": "./vendor/bin/drush site-install --db-url=mysql://drupal:drupal@db:3306/drupal --account-pass=admin",
-      "problemMatcher": [],
-      "options": {
-        "cwd": "/var/www/html"
+        "cwd": "/var/www/html/${input:project_type}"
       },
       "presentation": {
         "focus": true,
@@ -40,17 +28,29 @@
       },
     },
     {
-      "label": "Clone Project",
+      "label": "Install Drupal",
       "type": "shell",
-      "command": "git clone git@git.drupal.org:project/${input:project}.git",
+      "command": "./vendor/bin/drush site-install --db-url=mysql://drupal:drupal@db:3306/drupal --account-pass=admin",
       "problemMatcher": [],
       "options": {
-        "cwd": "/var/www/html/${input:project_type}"
+        "cwd": "/var/www/html"
       },
       "presentation": {
         "focus": true,
       },
-    }
+    },
+    {
+      "label": "Run Drush Command",
+      "type": "shell",
+      "command": "./vendor/bin/drush ${input:command}",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "/var/www/html"
+      },
+      "presentation": {
+        "focus": true,
+      },
+    },
   ],
   "inputs": [
     {
