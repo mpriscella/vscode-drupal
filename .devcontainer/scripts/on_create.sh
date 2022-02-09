@@ -12,6 +12,6 @@ themes
 sites/default/files
 EOM
 
-cd $CODESPACE_VSCODE_FOLDER/drupal && \
+cd drupal && \
   composer install && \
   composer require drush/drush
